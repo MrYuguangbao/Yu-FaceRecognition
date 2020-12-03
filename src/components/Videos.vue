@@ -1,17 +1,26 @@
 <template>
-    <div class="camera_outer">
-      <video id="videoCamera" :width="600" :height="600" autoplay></video>
-      <canvas style="display:none" id="canvasCamera" :width="600" :height="600"></canvas>
-      <div v-if="imgSrc" class="img_bg_camera">
-        <p>效果预览</p>
-        <img :src="imgSrc" alt class="tx_img" />
-      </div>
-      <div class="button">
-        <el-button @click="getCompetence()">打开摄像头</el-button>
-        <el-button @click="stopNavigator()">关闭摄像头</el-button>
-        <el-button @click="setImage()">拍照</el-button>
-      </div>
-  </div>
+    <div>
+      <el-row style="margin-bottom:10px">
+        <el-col :offset=9 :span="6">
+          <el-button type="primary" @click="getCompetence()">打开摄像头</el-button>
+          <el-button type="primary" @click="stopNavigator()">关闭摄像头</el-button>
+          <el-button type="primary" @click="setImage()">拍照</el-button>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="11">
+          <video id="videoCamera" :width="600" :height="600" autoplay></video>
+          <canvas style="display:none" id="canvasCamera" :width="600" :height="600"></canvas>
+        </el-col>
+        <el-col :span="6">
+          <img v-if="imgSrc" :src="imgSrc" :width="600" :height="600" alt class="tx_img" />
+          <!-- <div  class="img_bg_camera">
+            <p>效果预览</p>
+            <img v-if="imgSrc" :src="imgSrc" alt class="tx_img" />
+          </div> -->
+        </el-col>
+      </el-row>
+    </div>
 </template>
 <script>
 export default {
@@ -103,6 +112,14 @@ export default {
       )
       // 获取图片base64链接
       var image = this.thisCancas.toDataURL('image/png')
+      console.log('base64编码:' + image)
+      this.$post('/face/recognition', {code: image}, '')
+        .then(res => {
+          this.$message.success('识别成功！')
+        })
+        .catch(error => {
+          console.log(error)
+        })
       _this.imgSrc = image// 赋值并预览图片
     },
     // 关闭摄像头
