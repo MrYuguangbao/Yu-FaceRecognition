@@ -5,11 +5,11 @@
         <div class='show-photo'>
             <video id='video' width='600px' height='600px' autoplay='autoplay'></video>
             <canvas id='canvas' width='600px' height='600px' style='display: none'></canvas>
-            <a id='downloadA'></a>
+            <a id='downloadA'>保存图片</a>
         </div>
         <div class='take-photo'>
             <button type='button' @click='takePhoto()'>
-                拍照
+                拍照截图
             </button>
         </div>
         <div class='close-photo'>
@@ -18,10 +18,6 @@
             </button>
         </div>
     </div>
-    <!-- </div> -->
-    <!-- <video  id='video' class='vio' autoplay='autoplay' v-show='video_show'></video> -->
-    <!--隐藏掉   为了发送照片-->
-    <!-- <canvas id='canvas' width='498' height='238' v-show='canvas_show'></canvas> -->
   </div>
 </template>
 

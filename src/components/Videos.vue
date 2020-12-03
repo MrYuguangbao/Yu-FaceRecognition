@@ -1,16 +1,16 @@
 <template>
     <div class="camera_outer">
-    <video id="videoCamera" :width="600" :height="600" autoplay></video>
-    <canvas style="display:none" id="canvasCamera" :width="600" :height="600"></canvas>
-    <div v-if="imgSrc" class="img_bg_camera">
-      <p>效果预览</p>
-      <img :src="imgSrc" alt class="tx_img" />
-    </div>
-    <div class="button">
-      <el-button @click="getCompetence()">打开摄像头</el-button>
-      <el-button @click="stopNavigator()">关闭摄像头</el-button>
-      <el-button @click="setImage()">拍照</el-button>
-    </div>
+      <video id="videoCamera" :width="600" :height="600" autoplay></video>
+      <canvas style="display:none" id="canvasCamera" :width="600" :height="600"></canvas>
+      <div v-if="imgSrc" class="img_bg_camera">
+        <p>效果预览</p>
+        <img :src="imgSrc" alt class="tx_img" />
+      </div>
+      <div class="button">
+        <el-button @click="getCompetence()">打开摄像头</el-button>
+        <el-button @click="stopNavigator()">关闭摄像头</el-button>
+        <el-button @click="setImage()">拍照</el-button>
+      </div>
   </div>
 </template>
 <script>
